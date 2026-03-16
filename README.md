@@ -45,6 +45,21 @@ A self-contained browser-based pixel art editor (`pixel-art-editor.html`). Featu
 
 ---
 
+### FBX Import Pipeline (`FBX_Importer_v1/fbx_Importer_v1.unitypackage`)
+
+Automates importing FBX files from an external folder into Unity, with an inspector-based UI for splitting each FBX into individual prefabs and extracting materials and textures into organized subfolders.
+
+- **FBXImportWindow** — Editor window (`Tools > FBX Import Pipeline`) for selecting source and destination folders and triggering imports.
+- **FBXImportPipeline** — Static utility handling file copying, texture/material extraction, duplicate detection, pivot adjustment, and prefab generation.
+- **FBXImportTask** — ScriptableObject storing per-FBX config: root object decisions, duplicate groups, and generated prefab paths.
+- **FBXImportTaskEditor** — Custom Inspector with sort modes (Hierarchy, By Appearance, By Name), duplicate highlighting, and Process/Reset buttons.
+
+Duplicate detection compares mesh geometry (vertex count, triangle counts, bounds, materials) rather than asset names. All generated prefabs have their pivot anchored to the bottom-center of their renderer bounds.
+
+**Key scripts:** `FBX_Importer_v1/FBXImporter/Editor/`
+
+---
+
 ### Zoo Generator (`ZooGenerator.unitypackage`)
 
 Procedurally populates a Unity scene with prefabs organized into categories, useful for quickly building asset showcase scenes. Configuration is driven by a `ZooSceneConfig` ScriptableObject that defines category names, prefab folder paths, layout mode (grid or auto-fit), and spacing. The layout engine uses bounds-aware packing to prevent overlaps.
