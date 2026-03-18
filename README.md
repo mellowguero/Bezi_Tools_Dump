@@ -4,7 +4,7 @@ A collection of Unity Editor tools and utilities packaged as `.unitypackage` fil
 
 ## Packages
 
-### Asset Browser (`Asset Browser.unitypackage`)
+### Asset Browser (`Asset Browser/Asset Browser.unitypackage`)
 
 Generates interactive HTML previews for project assets. Supports images, videos, FBX models, and prefabs. 3D models are rendered using three.js with HDRI lighting, embedded textures as base64 data URIs, and OrbitControls for in-browser inspection — no Unity required to view them.
 
@@ -12,7 +12,7 @@ Generates interactive HTML previews for project assets. Supports images, videos,
 
 ---
 
-### Capture Tools (`Capture_Tools_Images.unitypackage`)
+### Capture Tools (`Capture_Tools_Images/Capture_Tools_Images.unitypackage`)
 
 Three editor utilities for capturing and optimizing assets:
 
@@ -24,7 +24,7 @@ Three editor utilities for capturing and optimizing assets:
 
 ---
 
-### Model Recorder (`Model_Recorder.unitypackage`)
+### Model Recorder (`Model Recorder/Model_Recorder.unitypackage`)
 
 Records MP4 videos of models directly from the Unity Editor. Supports two recording modes:
 
@@ -37,7 +37,7 @@ Output resolution, frame rate, duration, and background color are all configurab
 
 ---
 
-### Pixel Art Tool (`PixelArtTool.unitypackage`)
+### Pixel Art Tool (`Pixel Art Tool/PixelArtTool.unitypackage`)
 
 A self-contained browser-based pixel art editor (`pixel-art-editor.html`). Features include a canvas drawing interface, color palette management, brush tools, undo/redo, and PNG export. No server required — open the HTML file directly.
 
@@ -60,11 +60,25 @@ Duplicate detection compares mesh geometry (vertex count, triangle counts, bound
 
 ---
 
-### Zoo Generator (`ZooGenerator.unitypackage`)
+### Texture Atlas Maker (`Texture_Atlas/Texture_Atlas_Maker.unitypackage`)
+
+Combines multiple materials and textures into a single packed texture atlas, with a companion prefab remapping pass to update mesh UVs and material references automatically.
+
+- **TextureAtlasWindow** — Editor window (`Tools > Texture Atlas Generator`) with two tabs:
+  - **Generate Atlas** — Packs a list of materials (inline or via a `TextureAtlasTask` ScriptableObject) into a single atlas at configurable resolution (`maxAtlasSize`), cell size, and padding. Optionally deletes original materials after packing.
+  - **Remap Prefabs** — Walks a list of prefabs (inline or via an `AtlasRemapTask` ScriptableObject) and re-maps every mesh's UVs and material slots to the generated atlas, with an option to create mesh copies instead of modifying assets in-place.
+- **TextureAtlasGenerator** — Core packing logic: bins textures into cells, renders the atlas with `RenderTexture`, and writes the output PNG to a configurable output folder with a named prefix.
+- **AtlasRemapGenerator** — UV remapping pass that adjusts per-vertex UV0 coordinates to the sub-rect occupied by each material in the atlas.
+
+**Key scripts:** `Texture_Atlas/TextureAtlas/Editor/`
+
+---
+
+### Zoo Generator (`ZooGenerator/ZooGenerator.unitypackage`)
 
 Procedurally populates a Unity scene with prefabs organized into categories, useful for quickly building asset showcase scenes. Configuration is driven by a `ZooSceneConfig` ScriptableObject that defines category names, prefab folder paths, layout mode (grid or auto-fit), and spacing. The layout engine uses bounds-aware packing to prevent overlaps.
 
-**Key scripts:** `Assets/Scripts/Editor/`
+**Key scripts:** `ZooGenerator/Editor/`
 
 ## Installation
 
